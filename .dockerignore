@@ -1,0 +1,20 @@
+# This specify a list of files that are going to be excluded from the Docker context (container creation)
+
+# Git
+.git
+.gitignore
+
+# Docker --> Docker hidden file that doesn't need to be created in our Dockerfile. Ignoring it might be useful to keep the container as lightweight as possible.
+.docker
+
+# Python: Reason why we ignore python cache files it's because the cache that Python generates might be specific for our operating system and architecture.
+# We ignore them because it might cause trouble when building our container, and ignoring them might make the build process faster. 
+app/__pycache__/ # Ignore Python cache files --> Doesn't include subdirectories, so this is why we need the next lines.
+app/*/__pycache__/ # Ignore Python cache files in any subdirectory of app
+app/*/*/__pycache__/ # Ignore Python cache files in any sub-subdirectory of app
+app/*/*/*/__pycache__/ # Ignore Python cache files in any sub-sub-subdirectory of app
+
+# We remove virtual environments and environment variables files because they are not needed in the container, and they might contain sensitive information.
+.env/
+.venv/
+venv/

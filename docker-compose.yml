@@ -1,0 +1,19 @@
+# Version of the docker compose syntax just in case docker compose releases new versions of the syntax.
+# This is just a mechanism to make sure that the syntax we use here matches the specific version, and if they release new ones, it doesn't break out our configuration.
+
+version: "3.9"
+
+# This is gonna be the main block of the file as Docker Compose permits to define one or more services that's needed for the application.
+
+services:
+  app: # "app" is just the name of our service. It could be called "backend", as what we are going to be developing is a backend or "API".
+    build:
+      context: .
+      args:
+        - DEV=true # If we're running using THIS docker-compose (which we're only going to use for development) set a build argument called dev and set the value to true.
+    ports:
+      - "8000:8000" # ports "8000:8000" means we map port 8000 on our local machine to port 8000 inside our Docker container.
+    volumes:
+      - ./app:/app  # volumes are a way of mapping directories on our system into the docker container: "./app:/app" means we map ./app local directory, and paste it into /app container directory.
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000" # command is the command that is going to be used to run the server.

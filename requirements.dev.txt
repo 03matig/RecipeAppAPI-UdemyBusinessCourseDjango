@@ -1,0 +1,5 @@
+# Here we create a new requirements file is because we're going to add a custom step to our build so we only install these development requirements when we're building an image for our local development server.
+# The reason we do this is because we don't need the flake8 package when we're running our deployed application, cuz we don't need to run the linting tool on the deployment server, we only need it on the development server.
+
+# Good practice: separate the project dependencies from the development dependencies, so we don't introduce unnecessary packages onto the image we are going to be building with Docker.
+flake8>=3.9.2,<3.10
