@@ -18,4 +18,4 @@ services:
       - ./app:/app  # volumes are a way of mapping directories on our system into the docker container: "./app:/app" means we map ./app local directory, and paste it into /app container directory.
     command: >
       sh -c "python manage.py runserver 0.0.0.0:8000" # command is the command that is going to be used to run the server.
-  
+
