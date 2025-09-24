@@ -8,7 +8,7 @@ version: "3.9"
 services:
   app: # "app" is just the name of our service. It could be called "backend", as what we are going to be developing is a backend or "API".
     build:
-      context: .
+      context: . # Uses the defined Dockerfile to generate the Django image for "app" service.
       args:
         - DEV=true # If we're running using THIS docker-compose (which we're only going to use for development) set a build argument called dev and set the value to true.
     ports:
@@ -18,4 +18,21 @@ services:
       - ./app:/app  # volumes are a way of mapping directories on our system into the docker container: "./app:/app" means we map ./app local directory, and paste it into /app container directory.
     command: >
       sh -c "python manage.py runserver 0.0.0.0:8000" # command is the command that is going to be used to run the server.
+    environment:
+      - DB_HOST=db
+      - DB_NAME=devdb
+      - DB_USER=devuser
+      - DB_PASS=changeme
+    depends_on:
+      - db # Lifts db service before lfting app service.
+  db:
+    image: postgres:13-alpine
+    volumes:
+    - dev-db-data:/var/lib/postgresql/data
+    environment: # Sets 3 env variables to set the intial configuration for our new db service.
+    - POSTGRES_DB=devdb 
+    - POSTGRES_USER=devuser
+    - POSTGRES_PASSWORD=changeme
 
+volumes:
+  dev-db-data: 
