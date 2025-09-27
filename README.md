@@ -97,6 +97,25 @@ docker compose up
 The line you're looking for is: \
 ```app-1  |   Applying core.0001_initial... OK```
 
+## Super User Creation
+
+This is key so you can use the Django Admin User Interface. You can access this by directing yourself on your browser to the following URL: ```127.0.0.1:8000/admin``` and it will automatically redirect you to the admin user interface login page.
+If you haven't created neither a superuser instance nor it's credentials, you can do it by Django command line:
+```
+python manage.py createsuperuser
+```
+or
+```
+docker compose run --rm app sh -c "python manage.py createsuperuser"
+```
+You expect to see some email and password requests. It all should look like this:
+```
+Email: youremail@example.com
+Password:
+Password (again):
+Superuser created successfully.
+```
+
 ## Flake8 Linting
 Comments that tell flake8 to ignore respective file's errors:
 ```
