@@ -81,7 +81,7 @@ DATABASES = {
         'HOST': os.environ.get('DB_HOST'),
         'NAME': os.environ.get('DB_NAME'),
         'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASS'), 
+        'PASSWORD': os.environ.get('DB_PASS'),
     }
 }
 
@@ -128,3 +128,6 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# We'll set auth_user_model configuration so we can use it for our Custom User Model.
+AUTH_USER_MODEL = 'core.User'
