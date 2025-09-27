@@ -9,11 +9,42 @@ docker compose run *name_of_the_service*: what this does is to run a temporarily
 docker compose up: what this does is to build the whole docker-compose.yml file, so if you define more than one service, you build all of those that are defined on the mentioned file.
 
 ### Project Setup
-Makes Docker to execute the Django default command to creating a new app:a
-```bash
+First thing you want to do, is to lift the django general project container, so you execute either:
+```
+django-admin startproject app .  # this inside the /app/ module you created manually by the time you want to setup the backend of your project
+```
+or (the one I recommend):
+```
+docker compose run --rm app sh -c "django-admin startproject app ."
+```
+
+By the time you want to create subapps, all you need to do is execute on your command prompt, powershell or anything you are using, either:
+```
+python manage.py startapp core
+```
+or:
+```
 docker compose run --rm app sh -c "python manage.py startapp core"
 ```
-The previous command creates the template app to our project
+
+The previous command creates the template app to our project. After that, your directory should look something like this:
+```bash
+app/
+├── app/               # directorio del proyecto (settings.py, urls.py, wsgi.py, asgi.py)
+│   ├── settings.py
+│   ├── urls.py
+│   └── ...
+├── manage.py
+├── core/
+│   ├── migrations/
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── views.py
+│   └── ...
+
+```
 
 ### Unit testing
 docker-compose run --rm app sh -c "python manage.py test"
