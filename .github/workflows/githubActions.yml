@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v2 # Checks our code out inside our GHA job. This is needed because the code is not checked out inside the job.
 
       - name: Tests
-        run: docker compose run --rm app sh -c "python manage.py test" # Command that is used for running the unit tests.
+        run: docker compose run --rm app sh -c "python manage.py wait_for_db && python manage.py test" # Command that is used for running the unit tests.
 
       - name: Lint
         run: docker compose run --rm app sh -c "flake8"
