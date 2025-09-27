@@ -11,3 +11,14 @@ exclude =
     __pycache__,
     manage.py,
     settings.py
+
+# E265: Inline comments wrongfully formatted
+# E266: Excessive amount of hashtag comments on a block of code.
+ignore = E265,E266
+
+# We raise the max length per line of code to allow long comments.
+max-line-length = 140
+
+# Optional: if any file needs to be totally ignored.
+# per-file-ignores =
+#     core/management/commands/wait_for_db.py: E501
