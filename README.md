@@ -4,6 +4,25 @@ Recipe Django API project - Udemy Business Course
 ## Building Docker Image
 docker build .
 
+## Dependencies
+Flake8
+postgres client
+drf-spectacular # This is for automated generated documentation, it's a third party library
+
+### DRF Spectacular (Django Rest Framework Spectacular)
+* It auto generate docs for documentation with another third party library
+* Generates a schema, which is a document on format of JSON or YML that explains the API (standard way to create a doc that explains the API).
+* The schema allows to create a browsable web interface to view the information on it, and allows to make real requests on the browser in order to test the API you are developing.
+* Handles authentication.
+
+#### How does it work?
+1. It creates a "schema" file (accessible on the endpoint, and when you request it, you'll download the schema file)
+2. Parse schema into GUI
+3. OpenAPI Schema is...
+    * A very popular standard for describing and documenting API
+    * Supported by most API documentation tools (we'll user SwaggerUI)
+    * Uses popular formats like YAML/JSON.
+
 ## Building docker compose
 docker compose run *name_of_the_service*: what this does is to run a temporarily container based on the definition of the service *name_of_the_service*
 docker compose up: what this does is to build the whole docker-compose.yml file, so if you define more than one service, you build all of those that are defined on the mentioned file.
