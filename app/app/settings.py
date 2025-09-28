@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'core',  # Makes sure the core app is installed inside our project
     'rest_framework',  # Enabling rest framework
     'drf_spectacular',  # Enabling DRF Spectacular
-
+    'user',  # User App enabled on the project
 ]
 
 MIDDLEWARE = [
