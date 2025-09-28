@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core', # Makes sure the core app is installed inside our project
+    'core',  # Makes sure the core app is installed inside our project
+    'rest_framework',  # Enabling rest framework
+    'drf_spectacular',  # Enabling DRF Spectacular
+
 ]
 
 MIDDLEWARE = [
@@ -131,3 +134,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # We'll set auth_user_model configuration so we can use it for our Custom User Model.
 AUTH_USER_MODEL = 'core.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',  # Configures DRF to use DRF Spectacular Auto Schema to generate the schema using OpenAPI.
+}

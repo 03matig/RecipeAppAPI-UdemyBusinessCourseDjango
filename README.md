@@ -9,6 +9,27 @@ Flake8
 postgres client
 drf-spectacular # This is for automated generated documentation, it's a third party library
 
+### Adding new dependencies to a Django project with Docker
+1. First thing you need to do is to add the dependency and it's version range you'll be using to the requirements.txt file.
+2. After you do that, you need to shut down every container you have running
+3. You run the following command
+    ```cmd
+    docker compose build
+    ```
+4. Now, the new dependency is installed.
+5. For your project to recognise it, you need to add it to the ./app/app/settings.py file,
+    ```python
+    INSTALLED_APPS = [
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        # Here
+    ]
+    ```
+
 ### DRF Spectacular (Django Rest Framework Spectacular)
 * It auto generate docs for documentation with another third party library
 * Generates a schema, which is a document on format of JSON or YML that explains the API (standard way to create a doc that explains the API).
@@ -22,6 +43,10 @@ drf-spectacular # This is for automated generated documentation, it's a third pa
     * A very popular standard for describing and documenting API
     * Supported by most API documentation tools (we'll user SwaggerUI)
     * Uses popular formats like YAML/JSON.
+
+#### How do I use it?
+1. First thing you do is download and run in a local SwaggerUI instance (supported API documentation tool)
+2. Serve Swagger with our API itself (deployed URL as part of our API).
 
 ## Building docker compose
 docker compose run *name_of_the_service*: what this does is to run a temporarily container based on the definition of the service *name_of_the_service*
@@ -173,3 +198,14 @@ Comments that tell flake8 to ignore respective file's errors:
 ```
 
 To visualize this phenomenon, you can check the app/core/admin.py file, as in first line there is a comment that says # noqa. When executing flake8, the output shouldn't show any linting related to that file.
+
+## Resources
+
+### LondonAppDeveloper's custom resources
+1. https://github.com/LondonAppDeveloper/c2-recipe-app-api-2/
+2. https://codechecker.app/checker/londonappdev/start/recipe-app-api-2/s-11-api-docs-03-install-drf-spectacular/
+
+### API Documentation - DRF Spectacular and SwaggerUI
+1. https://drf-spectacular.readthedocs.io/en/latest/index.html
+2. https://pypi.org/project/drf-spectacular/
+3. https://drf-spectacular.readthedocs.io/en/latest/readme.html#installation
